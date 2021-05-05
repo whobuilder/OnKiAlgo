@@ -2,7 +2,7 @@
 #include <OnKiAlgo/distribution.hpp>
 // #include <catch2/matchers/catch_matchers_generic.hpp>
 
-TEST_CASE("uniform double distribution", "[random_uniform_distribution<double>]")
+TEST_CASE("uniform double distribution", "[random_uniform_distribution]")
 {
     double start = 2.0;
     double end = 5.0;
@@ -18,7 +18,7 @@ TEST_CASE("uniform double distribution", "[random_uniform_distribution<double>]"
                       "The elements of the vector are in expected range"));
 }
 
-TEST_CASE("uniform int distribution", "[random_uniform_distribution<int>]")
+TEST_CASE("uniform int distribution", "[random_uniform_distribution]")
 {
     int start = 2;
     int end = 5;

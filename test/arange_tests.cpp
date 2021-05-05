@@ -1,7 +1,7 @@
 #include <catch2/catch.hpp>
 #include <OnKiAlgo/arange.hpp>
 
-TEST_CASE("arange with doubles", "[arange<double>]")
+TEST_CASE("arange with doubles", "[arange]")
 {
     REQUIRE_THAT(onkialgo::arange(1.0, 4.0, 0.7), Catch::Matchers::Approx(std::vector<double>{ 1.0, 1.7, 2.4, 3.1, 3.8 }));
     REQUIRE_THAT(onkialgo::arange(1.0, 2.0, 0.2), Catch::Matchers::Approx(std::vector<double>{ 1.0, 1.2, 1.4, 1.6, 1.8, 2.0 }));
@@ -10,13 +10,13 @@ TEST_CASE("arange with doubles", "[arange<double>]")
 }
 
 
-TEST_CASE("arange with ints", "[arange<int>]")
+TEST_CASE("arange with ints", "[arange]")
 {
     REQUIRE_THAT(onkialgo::arange(1, 4, 1), Catch::Matchers::Approx(std::vector<int>{ 1, 2, 3, 4 }));
     REQUIRE_THAT(onkialgo::arange(1, 4, 5), Catch::Matchers::Approx(std::vector<int>{ 1 }));
 }
 
-TEST_CASE("arange with chrono::duration", "[arange<std::chrono::duration<double>]")
+TEST_CASE("arange with chrono::duration", "[arange]")
 {
     using Seconds = std::chrono::duration<double>;
     using Milliseconds = std::chrono::duration<double, std::milli>;
