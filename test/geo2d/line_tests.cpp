@@ -25,3 +25,10 @@ TEST_CASE("length defined by two int points", "[line]")
     Point2D<int> p2{ 0, 5 };
     REQUIRE(onkialgo::geo2d::length(p1, p2) == Approx(5.8309518948));
 }
+
+TEST_CASE("Dot product ints", "[line]")
+{
+    Point2D<int> p1{ 3, 0 };
+    Point2D<int> p2{ 0, 5 };
+    REQUIRE(onkialgo::geo2d::dot_product(p1, p2) == 0);
+}
