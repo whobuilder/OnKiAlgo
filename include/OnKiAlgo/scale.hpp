@@ -24,7 +24,7 @@ public:
 
     T to_target(T source_value)
     {
-        if (source_value == source_start_) return source_start_;
+        if (source_value == source_start_) return target_start_;
         return target_start_ + static_cast<T>(ratio_ * (source_value - source_start_));
     }
 
