@@ -22,6 +22,14 @@ TEST_CASE("linear interpolate chrono", "[LinearScale]")
     REQUIRE(scaler.to_target(Seconds{ 3 }) == Seconds{ 35 });
 }
 
+TEST_CASE("interpolate chrono zero division", "[LinearScale]")
+{
+    using Seconds = std::chrono::duration<double>;
+    using MilliSeconds = std::chrono::duration<double, std::milli>;
+    auto scaler = onkialgo::LinearScale<MilliSeconds>(MilliSeconds{ 1000 }, Seconds{ 5 }, Seconds{ 10 }, Seconds{ 60 });
+    REQUIRE(scaler.to_target(Seconds{ 1 }) == Seconds{ 10 });
+}
+
 TEST_CASE("linear scale doubles", "[LinearScale]")
 {
     auto scaler = onkialgo::LinearScale(1., 5., 10., 60.);
@@ -38,7 +46,7 @@ TEST_CASE("linear scale chrono", "[LinearScale]")
     REQUIRE(scaler.scale_back(Seconds{ 37.5 }) == MilliSeconds{ 3000 });
 }
 
-TEST_CASE("linear scale complex", "[LinearScale")
+TEST_CASE("linear scale complex", "[LinearScale]")
 {
     auto scaler = onkialgo::LinearScale(std::complex<double>{ 1, 0 }, std::complex<double>{ 5, 0 }, std::complex<double>{ 10, 0 }, std::complex<double>{ 60, 0 });
     REQUIRE(scaler.scale(std::complex<double>{ 3, 0 }) == std::complex<double>{ 37.5, 0 });
