@@ -5,20 +5,11 @@
 #include <type_traits>
 namespace onkialgo {
 
-namespace detail {
-    template<typename T>
-    class DivisionType
-    {
-    public:
-        T val_{};
-        auto operator()() { return val_ / val_; }
-    };
-}// namespace detail
 template<typename T>
 class LinearScale
 {
     using FloatingType = std::conditional_t<std::is_arithmetic_v<T>, double, T>;
-    using RatioType = std::conditional_t<std::is_convertible_v<std::invoke_result_t<detail::DivisionType<T>>, double>, double, T>;
+    using RatioType = std::conditional_t<std::is_convertible_v<decltype(T{} / T{}), double>, double, T>;
 
     T source_start_;
     T target_start_;
