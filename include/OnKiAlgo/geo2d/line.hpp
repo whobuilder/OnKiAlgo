@@ -24,6 +24,14 @@ auto dot_product(PointType p1, PointType p2)
     return p1.x * p2.x + p1.y * p2.y;
 }
 
+template<typename PointType>
+auto unit_vector(PointType p1, PointType p2)
+{
+    POINT2D_CONCEPT(p1);
+    using UnderlyingType = decltype(p1.x);
+    auto l = length(p1, p2);
+    return PointType{ static_cast<UnderlyingType>((p2.x - p1.x) / l), static_cast<UnderlyingType>((p2.y - p1.y) / l) };
+}
 }// namespace geo2d
 }// namespace onkialgo
 

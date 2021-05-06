@@ -32,3 +32,17 @@ TEST_CASE("Dot product ints", "[line]")
     Point2D<int> p2{ 0, 5 };
     REQUIRE(onkialgo::geo2d::dot_product(p1, p2) == 0);
 }
+
+TEST_CASE("Unit vector ints", "[line]")
+{
+    Point2D<int> p1{ 3, 0 };
+    Point2D<int> p2{ 0, 4 };
+    REQUIRE(onkialgo::geo2d::unit_vector(p1, p2) == Point2D<int>{ 0, 0 });
+}
+
+TEST_CASE("Unit vector floats", "[line]")
+{
+    Point2D<float> p1{ 3, 0 };
+    Point2D<float> p2{ 0, 4 };
+    REQUIRE(onkialgo::geo2d::unit_vector(p1, p2) == Point2D<float>{ -0.6f, 0.8f });
+}
