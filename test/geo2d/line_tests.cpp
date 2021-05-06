@@ -56,3 +56,10 @@ TEST_CASE("Normal unit vector", "[line]")
     p2 = { 0, 0 };
     REQUIRE(onkialgo::geo2d::normal_unit_vector(p1, p2) == Point2D<float>{ 1.f, 0.f });
 }
+
+TEST_CASE("Point on the line", "[line]")
+{
+    Point2D<float> p1{ 1, 2 };
+    Point2D<float> p2{ 4, 6 };
+    REQUIRE(onkialgo::geo2d::point_on_line(p1, p2, 0.5) == Point2D<float>{ 2.5f, 4.f });
+}
