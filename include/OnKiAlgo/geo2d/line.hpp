@@ -32,6 +32,15 @@ auto unit_vector(PointType p1, PointType p2)
     auto l = length(p1, p2);
     return PointType{ static_cast<UnderlyingType>((p2.x - p1.x) / l), static_cast<UnderlyingType>((p2.y - p1.y) / l) };
 }
+
+template<typename PointType>
+PointType normal_unit_vector(PointType p1, PointType p2)
+{
+    POINT2D_CONCEPT(p1);
+    auto unit = unit_vector(p1, p2);
+    return PointType{ -unit.y, unit.x };
+}
+
 }// namespace geo2d
 }// namespace onkialgo
 
