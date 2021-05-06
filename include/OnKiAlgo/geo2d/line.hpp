@@ -41,13 +41,12 @@ PointType normal_unit_vector(PointType p1, PointType p2)
     return PointType{ -unit.y, unit.x };
 }
 
-template<typename PointType, typename RatioType>
-PointType point_on_line(PointType p1, PointType p2, RatioType portion)
+template<typename PointType>
+PointType point_on_line(PointType p1, PointType p2, decltype(p1.x) portion)
 {
     POINT2D_CONCEPT(p1);
-    using UnderlyingType = decltype(p1.x);
-    return { p1.x + static_cast<UnderlyingType>((p2.x - p1.x) * portion),
-        p1.y + static_cast<UnderlyingType>((p2.y - p1.y) * portion) };
+    return { p1.x + (p2.x - p1.x) * portion,
+        p1.y + (p2.y - p1.y) * portion };
 }
 
 }// namespace geo2d
