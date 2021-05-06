@@ -63,3 +63,17 @@ TEST_CASE("Point on the line", "[line]")
     Point2D<float> p2{ 4, 6 };
     REQUIRE(onkialgo::geo2d::point_on_line(p1, p2, 0.5) == Point2D<float>{ 2.5f, 4.f });
 }
+
+TEST_CASE("line slope", "[line]")
+{
+    Point2D<float> p1{ 1, 2 };
+    Point2D<float> p2{ 2, 6 };
+    REQUIRE(onkialgo::geo2d::slope(p1, p2) == Approx(4));
+}
+
+TEST_CASE("line slope with int points", "[line]")
+{
+    Point2D<int> p1{ 1, 2 };
+    Point2D<int> p2{ 3, 7 };
+    REQUIRE(onkialgo::geo2d::slope(p1, p2) == Approx(2.5));
+}

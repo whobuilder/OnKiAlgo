@@ -49,6 +49,14 @@ PointType point_on_line(PointType p1, PointType p2, decltype(p1.x) portion)
         p1.y + (p2.y - p1.y) * portion };
 }
 
+template<typename PointType>
+auto slope(PointType p1, PointType p2)
+{
+    POINT2D_CONCEPT(p1);
+    using FloatingType = std::conditional_t<std::is_floating_point_v<decltype(p1.x)>, decltype(p1.x), double>;
+    return static_cast<FloatingType>(p2.y - p1.y) / (p2.x - p1.x);
+}
+
 }// namespace geo2d
 }// namespace onkialgo
 
