@@ -8,8 +8,7 @@ add_executable(
   distribution_tests.cpp
   arange_tests.cpp
   round_tests.cpp
-  scale_tests.cpp
-  geo2d/line_tests.cpp)
+  scale_tests.cpp)
 
 target_link_libraries(tests PRIVATE project_warnings project_options
                                     OnKiAlgo::OnKiAlgo Catch2::Catch2)
