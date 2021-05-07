@@ -77,3 +77,16 @@ TEST_CASE("line slope with int points", "[line]")
     Point2D<int> p2{ 3, 7 };
     REQUIRE(onkialgo::geo2d::slope(p1, p2) == Approx(2.5));
 }
+
+TEST_CASE("Check whether is point on the line")
+{
+    Point2D<float> p1{ 1, 2 };
+    Point2D<float> p2{ 2, 6 };
+    auto point_on_line = onkialgo::geo2d::point_on_line(p1, p2, 0.99f);
+    REQUIRE(onkialgo::geo2d::is_on_line(p1, p2, point_on_line));
+
+    auto point_off_line = onkialgo::geo2d::point_on_line(p1, p2, -0.1f);
+    REQUIRE_FALSE(onkialgo::geo2d::is_on_line(p1, p2, onkialgo::geo2d::point_on_line(p1, p2, 1.01f)));// point is after the end point
+    REQUIRE_FALSE(onkialgo::geo2d::is_on_line(p1, p2, onkialgo::geo2d::point_on_line(p1, p2, -0.1f)));// point is before the start point
+    REQUIRE_FALSE(onkialgo::geo2d::is_on_line(p1, p2, { 1.5f, 3.5f }));// slopes don't match
+}

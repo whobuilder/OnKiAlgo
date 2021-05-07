@@ -57,6 +57,14 @@ auto slope(PointType p1, PointType p2)
     return static_cast<FloatingType>(p2.y - p1.y) / (p2.x - p1.x);
 }
 
+template<typename PointType>
+bool is_on_line(PointType start, PointType end, PointType to_check)
+{
+    POINT2D_CONCEPT(start);
+    return slope(start, end) == slope(to_check, end)
+           && to_check.x >= start.x && to_check.x <= end.x;
+}
+
 }// namespace geo2d
 }// namespace onkialgo
 
