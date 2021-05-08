@@ -1,14 +1,8 @@
 find_package(Catch2 REQUIRED)
 include(Catch)
 
-add_executable(
-  tests
-  catch_main.cpp
-  linspace_tests.cpp
-  distribution_tests.cpp
-  arange_tests.cpp
-  round_tests.cpp
-  scale_tests.cpp)
+add_executable(tests catch_main.cpp linspace_tests.cpp distribution_tests.cpp
+                     arange_tests.cpp round_tests.cpp scale_tests.cpp)
 
 target_link_libraries(tests PRIVATE project_warnings project_options
                                     OnKiAlgo::OnKiAlgo Catch2::Catch2)
