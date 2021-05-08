@@ -24,3 +24,5 @@ catch_discover_tests(
   -s
   --reporter=xml
   --out=tests.xml)
+
+report_code_coverage(tests ${CMAKE_CURRENT_BINARY_DIR}/tests)
