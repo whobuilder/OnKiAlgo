@@ -87,7 +87,7 @@ write_basic_package_version_file(
   COMPATIBILITY AnyNewerVersion)
 
 configure_package_config_file(
-  ${CMAKE_SOURCE_DIR}/cmake/OnKiAlgo-config.cmake.in ${project_config}
+  ${CMAKE_SOURCE_DIR}/cmake/project-config.cmake.in ${project_config}
   INSTALL_DESTINATION ${OnKiAlgo_CMAKE_DIR})
 
 export(
