@@ -5,8 +5,8 @@ project(
   OnKiAlgo
   VERSION 0.1.0
   LANGUAGES CXX)
-include(cmake/StandardProjectSettings.cmake)
-include(cmake/PreventInSourceBuilds.cmake)
+include(${ONKI_CMAKE_FILES_PATH}/StandardProjectSettings.cmake)
+include(${ONKI_CMAKE_FILES_PATH}/PreventInSourceBuilds.cmake)
 
 # Link this 'library' to set the c++ standard / compile-time options requested
 add_library(project_options INTERFACE)
@@ -25,25 +25,25 @@ endif()
 add_library(project_warnings INTERFACE)
 
 # enable cache system
-include(cmake/Cache.cmake)
+include(${ONKI_CMAKE_FILES_PATH}/Cache.cmake)
 
 # standard compiler warnings
-include(cmake/CompilerWarnings.cmake)
+include(${ONKI_CMAKE_FILES_PATH}/CompilerWarnings.cmake)
 set_project_warnings(project_warnings)
 
 # sanitizer options if supported by compiler
-include(cmake/Sanitizers.cmake)
+include(${ONKI_CMAKE_FILES_PATH}/Sanitizers.cmake)
 enable_sanitizers(project_options)
 
 option(ENABLE_BENCHMARK "Enable Benchmark Builds" OFF)
 option(ENABLE_TESTS "Enable Test Builds" ON)
 
 # enable doxygen
-include(cmake/Doxygen.cmake)
+include(${ONKI_CMAKE_FILES_PATH}/Doxygen.cmake)
 enable_doxygen()
 
 # allow for static analysis options
-include(cmake/StaticAnalyzers.cmake)
+include(${ONKI_CMAKE_FILES_PATH}/StaticAnalyzers.cmake)
 
 if(ENABLE_BENCHMARK)
   add_subdirectory(benchmark)
@@ -87,7 +87,7 @@ write_basic_package_version_file(
   COMPATIBILITY AnyNewerVersion)
 
 configure_package_config_file(
-  ${CMAKE_SOURCE_DIR}/cmake/project-config.cmake.in ${project_config}
+  ${ONKI_CMAKE_FILES_PATH}/project-config.cmake.in ${project_config}
   INSTALL_DESTINATION ${OnKiAlgo_CMAKE_DIR})
 
 export(
