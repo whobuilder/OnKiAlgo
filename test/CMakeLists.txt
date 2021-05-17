@@ -9,6 +9,7 @@ add_executable(
   arange_tests.cpp
   round_tests.cpp
   scale_tests.cpp
+  bring_to_front_tests.cpp
   slide_tests.cpp)
 
 target_link_libraries(tests PRIVATE project_warnings project_options
