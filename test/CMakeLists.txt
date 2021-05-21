@@ -1,4 +1,5 @@
 find_package(Catch2 REQUIRED)
+find_package(FMT REQUIRED)
 include(Catch)
 
 add_executable(
@@ -10,10 +11,13 @@ add_executable(
   round_tests.cpp
   scale_tests.cpp
   bring_to_front_tests.cpp
-  slide_tests.cpp)
+  slide_tests.cpp
+  generic_helpers_tests.cpp
+  is_std_array_tests.cpp)
 
-target_link_libraries(tests PRIVATE project_warnings project_options
-                                    OnKiAlgo::OnKiAlgo Catch2::Catch2)
+target_link_libraries(
+  tests PRIVATE project_warnings project_options OnKiAlgo::OnKiAlgo
+                Catch2::Catch2 fmt::fmt-header-only)
 
 # automatically discover tests that are defined in catch based test files you
 # can modify the unittests. TEST_PREFIX to whatever you want, or use different
