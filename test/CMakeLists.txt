@@ -12,7 +12,7 @@ add_executable(
   scale_tests.cpp
   bring_to_front_tests.cpp
   slide_tests.cpp
-  generic_helpers_tests.cpp
+  container_factory_tests.cpp
   is_std_array_tests.cpp
   slice_tests.cpp)
 
