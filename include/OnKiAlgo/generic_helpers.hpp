@@ -5,10 +5,10 @@
 namespace onkialgo {
 
 template<typename Container>
-Container container_with_size(const Container &&, std::size_t size) { return Container(size); }
+Container initialize_with_size(const Container &&, std::size_t size) { return Container(size); }
 
 template<typename T, std::size_t N>
-std::array<T, N> container_with_size(const std::array<T, N> &&, std::size_t) { return {}; }
+std::array<T, N> initialize_with_size(const std::array<T, N> &&, std::size_t) { return {}; }
 
 template<std::ptrdiff_t i, typename Container>
 auto container_with_size_increased_by(Container &&c)
