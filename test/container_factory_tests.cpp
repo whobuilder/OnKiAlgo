@@ -1,5 +1,5 @@
 #include <catch2/catch.hpp>
-#include <OnKiAlgo/generic_helpers.hpp>
+#include <OnKiAlgo/container_factory.hpp>
 
 TEST_CASE("create vector with size", "[initialize_with_size]")
 {

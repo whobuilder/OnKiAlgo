@@ -1,5 +1,5 @@
-#ifndef ONKIALGO_GENERIC_HELPERS_H
-#define ONKIALGO_GENERIC_HELPERS_H
+#ifndef ONKIALGO_CONTAINER_FACTORY_H
+#define ONKIALGO_CONTAINER_FACTORY_H
 #include <cstddef>
 #include <array>
 namespace onkialgo {
@@ -34,4 +34,4 @@ struct ContainerFactory<std::array<T, N>>
 
 }// namespace onkialgo
 
-#endif /* ONKIALGO_GENERIC_HELPERS_H */
+#endif /* ONKIALGO_CONTAINER_FACTORY_H */

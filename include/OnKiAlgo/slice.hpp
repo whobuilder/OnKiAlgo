@@ -2,7 +2,7 @@
 #define ONKIALGO_SLICE_H
 #include <cstddef>
 #include <algorithm>
-#include <OnKiAlgo/generic_helpers.hpp>
+#include <OnKiAlgo/container_factory.hpp>
 namespace onkialgo {
 template<typename ResultType, typename Container>
 ResultType slice(Container &&c, std::size_t start_index, std ::size_t end_index)

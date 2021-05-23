@@ -1,7 +1,7 @@
 #ifndef ONKIALGO_SLIDE_H
 #define ONKIALGO_SLIDE_H
 #include <vector>
-#include <OnKiAlgo/generic_helpers.hpp>
+#include <OnKiAlgo/container_factory.hpp>
 namespace onkialgo {
 
 template<typename ResultType, typename ValuesType>
