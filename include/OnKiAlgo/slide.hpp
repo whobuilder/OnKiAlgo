@@ -9,9 +9,9 @@ ResultType slide(ValuesType &&values, std::size_t slide_size)
 {
     using InnerContainer = typename ResultType::value_type;
     using OuterContainer = ResultType;
-    auto outer_container = onkialgo::initialize_with_size(OuterContainer{}, values.size() - (slide_size - 1));
+    auto outer_container = ContainerFactory<OuterContainer>::create(values.size() - (slide_size - 1));
     std::transform(begin(values), std::prev(end(values), (slide_size - 1)), begin(outer_container), [&](auto &val) {
-        auto inner_container = onkialgo::initialize_with_size(InnerContainer{}, slide_size);
+        auto inner_container = onkialgo::ContainerFactory<InnerContainer>::create(slide_size);
         std::copy(&val, std::next(&val, slide_size), begin(inner_container));
         return inner_container;
     });

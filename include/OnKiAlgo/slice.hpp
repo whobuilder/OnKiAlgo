@@ -11,7 +11,7 @@ ResultType slice(Container &&c, std::size_t start_index, std ::size_t end_index)
     using SlicedValueType = typename ResultType::value_type;
     static_assert(std::is_same_v<SourceValueType, SlicedValueType>, "Source and sliced container must have the same value_type!");
     auto size = end_index - start_index;
-    auto result = initialize_with_size(ResultType{}, size);
+    auto result = ContainerFactory<ResultType>::create(size);
     std::copy(
       std::next(std::begin(c), start_index),
       std::next(std::begin(c), end_index),
