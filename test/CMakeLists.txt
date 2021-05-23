@@ -13,7 +13,8 @@ add_executable(
   bring_to_front_tests.cpp
   slide_tests.cpp
   generic_helpers_tests.cpp
-  is_std_array_tests.cpp)
+  is_std_array_tests.cpp
+  slice_tests.cpp)
 
 target_link_libraries(
   tests PRIVATE project_warnings project_options OnKiAlgo::OnKiAlgo
