@@ -3,6 +3,7 @@
 #include <vector>
 #include <random>
 #include <type_traits>
+#include <algorithm>
 namespace onkialgo {
 template<typename T>
 std::vector<T> random_uniform_distribution(T start, T stop, std::size_t num)
