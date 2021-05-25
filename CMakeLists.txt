@@ -68,9 +68,9 @@ set(OnKiAlgo_CMAKE_DIR
       STRING
       "Installation directory for cmake files, a relative path that will be joined with ${CMAKE_INSTALL_PREFIX} or an absolute path."
 )
-set(version_config ${CMAKE_CURRENT_BINARY_DIR}/OnKiAlgo-config-version.cmake)
-set(project_config ${CMAKE_CURRENT_BINARY_DIR}/OnKiAlgo-config.cmake)
-set(targets_export_name OnKiAlgo-targets)
+set(version_config ${CMAKE_CURRENT_BINARY_DIR}/onkialgo-config-version.cmake)
+set(project_config ${CMAKE_CURRENT_BINARY_DIR}/onkialgo-config.cmake)
+set(targets_export_name onkialgo-targets)
 
 message(STATUS "CMAKE_INSTALL_LIBDIR: ${CMAKE_INSTALL_LIBDIR}")
 
