@@ -1,6 +1,7 @@
 #ifndef ONKIALGO_SLIDE_H
 #define ONKIALGO_SLIDE_H
 #include <vector>
+#include <algorithm>
 #include <OnKiAlgo/container_factory.hpp>
 namespace onkialgo {
 
