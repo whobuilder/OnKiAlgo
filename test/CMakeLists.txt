@@ -15,7 +15,8 @@ add_executable(
   container_factory_tests.cpp
   is_std_array_tests.cpp
   slice_tests.cpp
-  copy_until_tests.cpp)
+  copy_until_tests.cpp
+  repeat_tests.cpp)
 
 target_link_libraries(
   tests PRIVATE project_warnings project_options OnKiAlgo::OnKiAlgo
