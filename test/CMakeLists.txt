@@ -12,8 +12,6 @@ add_executable(
   scale_tests.cpp
   bring_to_front_tests.cpp
   slide_tests.cpp
-  container_factory_tests.cpp
-  is_std_array_tests.cpp
   slice_tests.cpp
   copy_until_tests.cpp
   repeat_tests.cpp)
