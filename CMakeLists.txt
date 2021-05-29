@@ -53,13 +53,15 @@ if(ENABLE_TESTS)
   enable_testing()
   add_subdirectory(test)
 endif()
+
+find_package(OnKiGenerics REQUIRED)
 add_library(OnKiAlgo INTERFACE)
 add_library(OnKiAlgo::OnKiAlgo ALIAS OnKiAlgo)
 target_include_directories(
   OnKiAlgo INTERFACE $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
                      $<INSTALL_INTERFACE:include> # <prefix>/include
 )
-
+target_link_libraries(OnKiAlgo INTERFACE OnKiGenerics::OnKiGenerics)
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 set(OnKiAlgo_CMAKE_DIR

@@ -2,17 +2,17 @@
 #define ONKIALGO_SLIDE_H
 #include <vector>
 #include <algorithm>
-#include <OnKiAlgo/container_factory.hpp>
+#include <OnKiGenerics/container_factory.hpp>
 namespace onkialgo {
 
 template<typename ResultType, typename ValuesType>
 ResultType slide(ValuesType &&values, std::ptrdiff_t slide_size)
 {
-    using InnerContainer = typename ContainerFactory<ResultType>::value_type;
+    using InnerContainer = typename onkigenerics::ContainerFactory<ResultType>::value_type;
     using OuterContainer = ResultType;
-    auto outer_container = ContainerFactory<OuterContainer>::create(static_cast<std::size_t>(static_cast<std::ptrdiff_t>(std::size(std::forward<ValuesType>(values))) - (slide_size - 1)));
+    auto outer_container = onkigenerics::ContainerFactory<OuterContainer>::create(static_cast<std::size_t>(static_cast<std::ptrdiff_t>(std::size(std::forward<ValuesType>(values))) - (slide_size - 1)));
     std::transform(std::begin(values), std::prev(std::end(values), (slide_size - 1)), std::begin(outer_container), [&](auto &val) {
-        auto inner_container = onkialgo::ContainerFactory<InnerContainer>::create(static_cast<std::size_t>(slide_size));
+        auto inner_container = onkigenerics::ContainerFactory<InnerContainer>::create(static_cast<std::size_t>(slide_size));
         std::copy(&val, std::next(&val, slide_size), begin(inner_container));
         return inner_container;
     });
