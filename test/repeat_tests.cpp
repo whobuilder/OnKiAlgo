@@ -7,6 +7,10 @@
 #include <forward_list>
 #include <array>
 
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wsign-conversion"
+#endif
 TEMPLATE_PRODUCT_TEST_CASE("repeat with standard containers", "[repeat]", (std::vector, std::list, std::deque, std::forward_list), (double, int))
 {
     TestType input = { 1, 2, 3, 4 };
@@ -37,6 +41,9 @@ TEMPLATE_PRODUCT_TEST_CASE("repeat_n_times using binary n generator with standar
     REQUIRE(std::equal(std::begin(output), std::end(output), std::begin(expected_values), [](const auto &r, const auto &e) { return r == Approx(e); }));
 }
 
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
 TEMPLATE_TEST_CASE("repeat with std::array", "[repeat]", (std::array<int, 4>), (std::array<double, 4>))
 {
     TestType input = { 1, 2, 3, 4 };
