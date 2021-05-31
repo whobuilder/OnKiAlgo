@@ -1,4 +1,7 @@
-.. image:: https://github.com/whobuilder/OnKiAlgo/workflows/linux/badge.svg?branch=main
+OnKiAlgo
+=====
+
+.. image:: https://github.com/whobuilder/OnKiAlgo/workflows/linux/badge.svg
    :target: https://github.com/whobuilder/OnKiAlgo/actions?query=workflow%3Alinux
 
 .. image:: https://github.com/whobuilder/OnKiAlgo/workflows/windows/badge.svg?branch=main
