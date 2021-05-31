@@ -8,16 +8,13 @@ jobs:
     # well on Windows or Mac.  You can convert this to a matrix build if you need
     # cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        config:
-        - {
-            name: "Ubuntu Latest",
-            os: ubuntu-latest,
-            build_type: ["Release", "Debug"], cxx: ["g++", "clang++"]
-          }
+          cxx: [g++, clang++]
+          build_type: [Debug, Release]
+          os: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v2
 
@@ -37,7 +34,7 @@ jobs:
         execute_process(COMMAND ${CMAKE_COMMAND}
             -S ${{ github.workspace }}/Catch2
             -B ${{ runner.workspace }}/catch-build
-            -D CMAKE_BUILD_TYPE=${{ matrix.config.build_type }}
+            -D CMAKE_BUILD_TYPE=${{matrix.build_type}}
             -D CMAKE_INSTALL_PREFIX=${{ runner.workspace }}/third_party
             -D CATCH_BUILD_TESTING=OFF
             -D CATCH_INSTALL_DOCS=OFF
@@ -65,6 +62,8 @@ jobs:
         token: ${{ secrets.ACCESS_TOKEN }}
 
     - name: install OnKiGenerics
+      env:
+          CXX: ${{matrix.cxx}}
       shell: cmake -P {0}
       run: |
         execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${{ runner.workspace }}/onkigenerics-build)
@@ -72,7 +71,7 @@ jobs:
             -S ${{ github.workspace }}/OnKiGenerics
             -B ${{ runner.workspace }}/onkigenerics-build
             -D ONKI_CMAKE_FILES_PATH=${{ github.workspace }}/OnKiCMakeFiles
-            -D CMAKE_BUILD_TYPE=${{ matrix.config.build_type }}
+            -D CMAKE_BUILD_TYPE=${{matrix.build_type}}
             -D CMAKE_INSTALL_PREFIX=${{ runner.workspace }}/third_party
             -D ENABLE_TESTS=OFF
         )
@@ -92,7 +91,7 @@ jobs:
            -B ${{ runner.workspace }}/build
            -D ONKI_CMAKE_FILES_PATH=${{ github.workspace }}/OnKiCMakeFiles
            -D CMAKE_PREFIX_PATH=${{ runner.workspace }}/third_party
-           -D CMAKE_BUILD_TYPE=${{ matrix.config.build_type }} RESULT_VARIABLE result)
+           -D CMAKE_BUILD_TYPE=${{matrix.build_type}} RESULT_VARIABLE result)
        if (NOT result EQUAL 0)
            message(FATAL_ERROR "Bad exit status")
        endif()
