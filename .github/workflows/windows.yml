@@ -1,4 +1,4 @@
-name: Linux
+name: Windows
 
 on: [push, pull_request]
 
@@ -39,6 +39,7 @@ jobs:
             -D CATCH_BUILD_TESTING=OFF
             -D CATCH_INSTALL_DOCS=OFF
             -D BUILD_TESTING=OFF
+            -A ${{matrix.platform}}
         )
         execute_process(COMMAND ${CMAKE_COMMAND} --build ${{ runner.workspace }}/catch-build RESULT_VARIABLE result)
         execute_process(COMMAND ${CMAKE_COMMAND} --install ${{ runner.workspace }}/catch-build RESULT_VARIABLE result)
@@ -71,6 +72,7 @@ jobs:
             -D ONKI_CMAKE_FILES_PATH=${{ github.workspace }}/OnKiCMakeFiles
             -D CMAKE_BUILD_TYPE=${{matrix.build_type}}
             -D CMAKE_INSTALL_PREFIX=${{ runner.workspace }}/third_party
+            -A ${{matrix.platform}}
             -D ENABLE_TESTS=OFF
         )
         execute_process(COMMAND ${CMAKE_COMMAND} --build ${{ runner.workspace }}/onkigenerics-build RESULT_VARIABLE result)
@@ -89,8 +91,8 @@ jobs:
            -B ${{ runner.workspace }}/build
            -D ONKI_CMAKE_FILES_PATH=${{ github.workspace }}/OnKiCMakeFiles
            -D CMAKE_PREFIX_PATH=${{ runner.workspace }}/third_party
-           -D CMAKE_BUILD_TYPE=${{matrix.build_type}} RESULT_VARIABLE result)
            -A ${{matrix.platform}}
+           -D CMAKE_BUILD_TYPE=${{matrix.build_type}} RESULT_VARIABLE result)
        if (NOT result EQUAL 0)
            message(FATAL_ERROR "Bad exit status")
        endif()
