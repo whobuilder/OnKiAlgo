@@ -34,7 +34,7 @@ jobs:
       shell: cmake -P {0}
       run: |
         execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${{ runner.workspace }}/catch-build)
-        execute_process(COMMAND ${CMAKE_COMMAND} 
+        execute_process(COMMAND ${CMAKE_COMMAND}
             -S ${{ github.workspace }}/Catch2
             -B ${{ runner.workspace }}/catch-build
             -D CMAKE_BUILD_TYPE=${{ matrix.config.build_type }}
@@ -49,7 +49,7 @@ jobs:
             message(FATAL_ERROR "Bad exit status")
         endif()
       working-directory: ${{ runner.workspace }}
-        
+
     - name: checkout OnKiCMakeFiles
       uses: actions/checkout@v2
       with:
@@ -61,7 +61,7 @@ jobs:
       shell: cmake -P {0}
       run: |
        execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${{ runner.workspace }}/build)
-       execute_process(COMMAND ${CMAKE_COMMAND} 
+       execute_process(COMMAND ${CMAKE_COMMAND}
            -S ${{ github.workspace }}
            -B ${{ runner.workspace }}/build
            -D ONKI_CMAKE_FILES_PATH=${{ github.workspace }}/OnKiCMakeFiles
@@ -71,7 +71,7 @@ jobs:
            message(FATAL_ERROR "Bad exit status")
        endif()
       working-directory: ${{ runner.workspace }}
-    - name: build OnKiAlgo   
+    - name: build OnKiAlgo
       shell: cmake -P {0}
       run: |
        execute_process(COMMAND ${CMAKE_COMMAND} --build ${{ runner.workspace }}/build RESULT_VARIABLE result)
