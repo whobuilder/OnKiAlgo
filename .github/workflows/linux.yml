@@ -57,6 +57,31 @@ jobs:
         path: OnKiCMakeFiles
         token: ${{ secrets.ACCESS_TOKEN }}
 
+    - name: checkout OnKiGenerics
+      uses: actions/checkout@v2
+      with:
+        repository: whobuilder/OnKiGenerics
+        path: OnKiGenerics
+        token: ${{ secrets.ACCESS_TOKEN }}
+
+    - name: install OnKiGenerics
+      shell: cmake -P {0}
+      run: |
+        execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${{ runner.workspace }}/onkigenerics-build)
+        execute_process(COMMAND ${CMAKE_COMMAND}
+            -S ${{ github.workspace }}/OnKiGenerics
+            -B ${{ runner.workspace }}/onkigenerics-build
+            -D CMAKE_BUILD_TYPE=${{ matrix.config.build_type }}
+            -D CMAKE_INSTALL_PREFIX=${{ runner.workspace }}/third_party
+            -D ENABLE_TESTS=OFF
+        )
+        execute_process(COMMAND ${CMAKE_COMMAND} --build ${{ runner.workspace }}/onkigenerics-build RESULT_VARIABLE result)
+        execute_process(COMMAND ${CMAKE_COMMAND} --install ${{ runner.workspace }}/onkigenerics-build RESULT_VARIABLE result)
+        if (NOT result EQUAL 0)
+            message(FATAL_ERROR "Bad exit status")
+        endif()
+      working-directory: ${{ runner.workspace }}
+
     - name: configure OnKiAlgo
       shell: cmake -P {0}
       run: |
