@@ -1,5 +1,4 @@
 find_package(Catch2 REQUIRED)
-find_package(FMT REQUIRED)
 include(Catch)
 
 add_executable(
@@ -18,7 +17,7 @@ add_executable(
 
 target_link_libraries(
   tests PRIVATE project_warnings project_options OnKiAlgo::OnKiAlgo
-                Catch2::Catch2 fmt::fmt-header-only)
+                Catch2::Catch2)
 
 # automatically discover tests that are defined in catch based test files you
 # can modify the unittests. TEST_PREFIX to whatever you want, or use different
