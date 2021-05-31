@@ -71,6 +71,7 @@ jobs:
         execute_process(COMMAND ${CMAKE_COMMAND}
             -S ${{ github.workspace }}/OnKiGenerics
             -B ${{ runner.workspace }}/onkigenerics-build
+            -D ONKI_CMAKE_FILES_PATH=${{ github.workspace }}/OnKiCMakeFiles
             -D CMAKE_BUILD_TYPE=${{ matrix.config.build_type }}
             -D CMAKE_INSTALL_PREFIX=${{ runner.workspace }}/third_party
             -D ENABLE_TESTS=OFF
