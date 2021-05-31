@@ -55,6 +55,7 @@ jobs:
       with:
         repository: whobuilder/OnKiCMakeFiles
         path: OnKiCMakeFiles
+        token: ${{ secrets.ACCESS_TOKEN }}
 
     - name: configure OnKiAlgo
       shell: cmake -P {0}
