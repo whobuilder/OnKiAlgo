@@ -28,6 +28,8 @@ jobs:
       working-directory: ${{ github.workspace }}/Catch2
 
     - name: install catch2
+      env:
+          CXX: ${{matrix.cxx}}
       shell: cmake -P {0}
       run: |
         execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${{ runner.workspace }}/catch-build)
@@ -83,6 +85,8 @@ jobs:
       working-directory: ${{ runner.workspace }}
 
     - name: configure OnKiAlgo
+      env:
+          CXX: ${{matrix.cxx}}
       shell: cmake -P {0}
       run: |
        execute_process(COMMAND ${CMAKE_COMMAND} -E make_directory ${{ runner.workspace }}/build)
