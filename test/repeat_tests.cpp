@@ -6,8 +6,6 @@
 #include <deque>
 #include <forward_list>
 #include <array>
-#include <fmt/format.h>
-#include <fmt/ranges.h>
 
 TEMPLATE_PRODUCT_TEST_CASE("repeat with standard containers", "[repeat]", (std::vector, std::list, std::deque, std::forward_list), (double, int))
 {
