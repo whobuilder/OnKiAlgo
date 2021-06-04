@@ -17,7 +17,7 @@ auto copy_until(Container &&container, UnaryFunction &&pred)
     using DefaultType = onkigenerics::DefaultDynamicContainer<Container>;
     using OutputType = onkigenerics::AlternativeType<DefaultType, ResultType>;
     auto it = std::find_if(std::begin(container), std::end(container), pred);
-    auto output_size = std::distance(std::begin(container), it);
+    auto output_size = static_cast<std::size_t>(std::distance(std::begin(container), it));
     OutputType out{};
     if constexpr (!onkigenerics::is_raw_or_std_array_v<OutputType>) {
 
@@ -33,7 +33,7 @@ auto copy_until(Container1 &&c1, Container2 &&c2, BinaryFunction &&pred)
     using DefaultType = onkigenerics::DefaultDynamicContainer<Container1>;
     using OutputType = onkigenerics::AlternativeType<DefaultType, ResultType>;
     auto it = onkialgo::implementation::find_if(std::begin(c1), std::end(c1), std::begin(c2), std::forward<BinaryFunction>(pred));
-    auto output_size = std::distance(std::begin(c1), it);
+    auto output_size = static_cast<std::size_t>(std::distance(std::begin(c1), it));
     OutputType out{};
     if constexpr (!onkigenerics::is_raw_or_std_array_v<OutputType>) {
 
