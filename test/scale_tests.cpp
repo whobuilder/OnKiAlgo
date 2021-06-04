@@ -1,25 +1,12 @@
 #include <catch2/catch.hpp>
 #include <OnKiAlgo/scale.hpp>
 #include <complex>
+#include <chrono>
 
-TEST_CASE("linear interpolate ints", "LinearScale")
+TEMPLATE_TEST_CASE("linear interpolate", "[LinearScale]", int, double, std::chrono::duration<double>)
 {
-    auto scaler = onkialgo::LinearScale(1, 5, 10, 60);
-    REQUIRE(scaler.to_target(3) == 35);
-}
-
-TEST_CASE("linear interpolate double", "[LinearScale]")
-{
-    auto scaler = onkialgo::LinearScale(1., 5., 10., 60.);
-    REQUIRE(scaler.to_target(2) == Approx(22.5));
-}
-
-TEST_CASE("linear interpolate chrono", "[LinearScale]")
-{
-    using Seconds = std::chrono::duration<double>;
-    using MilliSeconds = std::chrono::duration<double, std::milli>;
-    auto scaler = onkialgo::LinearScale<MilliSeconds>(MilliSeconds{ 1000 }, Seconds{ 5 }, Seconds{ 10 }, Seconds{ 60 });
-    REQUIRE(scaler.to_target(Seconds{ 3 }) == Seconds{ 35 });
+    auto scaler = onkialgo::LinearScale(TestType{ 1 }, TestType{ 5 }, TestType{ 10 }, TestType{ 60 });
+    REQUIRE(scaler.to_target(TestType{ 3 }) == TestType{ 35 });
 }
 
 TEST_CASE("interpolate chrono zero division", "[LinearScale]")
@@ -30,20 +17,11 @@ TEST_CASE("interpolate chrono zero division", "[LinearScale]")
     REQUIRE(scaler.to_target(Seconds{ 1 }) == Seconds{ 10 });
 }
 
-TEST_CASE("linear scale doubles", "[LinearScale]")
+TEMPLATE_TEST_CASE("linear scale", "[LinearScale]", double, std::chrono::duration<double>)
 {
-    auto scaler = onkialgo::LinearScale(1., 5., 10., 60.);
-    REQUIRE(scaler.scale(3) == Approx(37.5));
-    REQUIRE(scaler.scale_back(37.5) == Approx(3));
-}
-
-TEST_CASE("linear scale chrono", "[LinearScale]")
-{
-    using Seconds = std::chrono::duration<double>;
-    using MilliSeconds = std::chrono::duration<double, std::milli>;
-    auto scaler = onkialgo::LinearScale<MilliSeconds>(MilliSeconds{ 1000 }, Seconds{ 5 }, Seconds{ 10 }, Seconds{ 60 });
-    REQUIRE(scaler.scale(Seconds{ 3 }) == Seconds{ 37.5 });
-    REQUIRE(scaler.scale_back(Seconds{ 37.5 }) == MilliSeconds{ 3000 });
+    auto scaler = onkialgo::LinearScale(TestType{ 1. }, TestType{ 5. }, TestType{ 10. }, TestType{ 60. });
+    REQUIRE(scaler.scale(TestType{ 3 }) == TestType{ 37.5 });
+    REQUIRE(scaler.scale_back(TestType{ 37.5 }) == TestType{ 3 });
 }
 
 TEST_CASE("linear scale complex", "[LinearScale]")
