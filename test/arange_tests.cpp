@@ -1,5 +1,6 @@
 #include <catch2/catch.hpp>
 #include <OnKiAlgo/arange.hpp>
+#include <list>
 
 TEST_CASE("arange with doubles", "[arange]")
 {
