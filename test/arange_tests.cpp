@@ -1,7 +1,7 @@
 #include <catch2/catch.hpp>
 #include <OnKiAlgo/arange.hpp>
 #include <list>
-
+#include <chrono>
 TEST_CASE("arange with doubles", "[arange]")
 {
     REQUIRE_THAT(onkialgo::arange(1.0, 4.0, 0.7), Catch::Matchers::Approx(std::vector<double>{ 1.0, 1.7, 2.4, 3.1, 3.8 }));
