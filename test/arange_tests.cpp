@@ -20,5 +20,9 @@ TEST_CASE("arange with chrono::duration", "[arange]")
 {
     using Seconds = std::chrono::duration<double>;
     using Milliseconds = std::chrono::duration<double, std::milli>;
-    REQUIRE_THAT(onkialgo::arange<Seconds>(Seconds{ 1 }, Seconds{ 2 }, Milliseconds{ 500 }), Catch::Matchers::Equals(std::vector<Seconds>{ Seconds{ 1 }, Seconds{ 1.5 }, Seconds{ 2 } }));
+    auto seconds_range = onkialgo::arange(Seconds{ 1 }, Seconds{ 2 }, Seconds{ 0.5 });
+    REQUIRE_THAT(seconds_range, Catch::Matchers::Equals(std::vector<Seconds>{ Seconds{ 1 }, Seconds{ 1.5 }, Seconds{ 2 } }));
+    auto seconds_range_alternative = onkialgo::arange<std::list<Milliseconds>, Seconds>(Seconds{ 1 }, Seconds{ 2 }, Milliseconds{ 500 });
+    REQUIRE(std::is_same_v<decltype(seconds_range_alternative), std::list<Milliseconds>>);
+    REQUIRE(std::equal(std::begin(seconds_range), std::end(seconds_range), std::begin(seconds_range_alternative), [](const auto &r1, const auto &r2) { return r1 == r2; }));
 }
