@@ -4,10 +4,13 @@
 #include <random>
 #include <type_traits>
 #include <algorithm>
+#include <OnKiGenerics/container_factory.hpp>
+#include <OnKiGenerics/alternative_type.hpp>
 namespace onkialgo {
-template<typename T>
-std::vector<T> random_uniform_distribution(T start, T stop, std::size_t num)
+template<typename ResultType = void, typename T>
+auto random_uniform_distribution(T start, T stop, std::size_t num)
 {
+    using OutputType = onkigenerics::AlternativeType<std::vector<T>, ResultType>;
     using uniform_distribution = std::conditional_t<std::is_floating_point_v<T>,
       std::uniform_real_distribution<T>,
       std::conditional_t<std::is_integral_v<T>,
@@ -19,7 +22,7 @@ std::vector<T> random_uniform_distribution(T start, T stop, std::size_t num)
     std::random_device rd;
     std::mt19937 mt(rd());
     uniform_distribution dist(start, stop);
-    std::vector<T> range(num);
+    auto range = onkigenerics::ContainerFactory<OutputType>::create(num);
     std::generate(begin(range), end(range), [&]() { return dist(mt); });
     return range;
 }

@@ -4,6 +4,8 @@
 #include <algorithm>
 
 namespace onkialgo {
+namespace implementation {
+
 template<typename ForwardIt, typename T>
 ForwardIt bring_to_front(ForwardIt first, ForwardIt last, const T &value)
 {
@@ -29,6 +31,19 @@ ForwardIt bring_to_front_if(ForwardIt first, ForwardIt last, UnaryFunction &&pre
         ++i;
     }
     return std::next(first, i);
+}
+}// namespace implementation
+
+template<typename Container, typename T>
+auto bring_to_front(Container &container, const T &value) -> decltype(std::begin(container))
+{
+    return implementation::bring_to_front(std::begin(container), std::end(container), value);
+}
+
+template<typename Container, typename UnaryFunction>
+auto bring_to_front_if(Container &container, UnaryFunction &&pred) -> decltype(std::begin(container))
+{
+    return implementation::bring_to_front_if(std::begin(container), std::end(container), std::forward<UnaryFunction>(pred));
 }
 }// namespace onkialgo
 #endif /* ONKIALGO_BRING_TO_FRONT_H */

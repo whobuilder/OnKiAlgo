@@ -10,8 +10,8 @@ TEST_CASE("linspace with doubles", "[linspace]")
 
 TEST_CASE("linspace with ints", "[linspace]")
 {
-    REQUIRE_THAT(onkialgo::linspace<int>(-1, 1, 3), Catch::Matchers::Equals(std::vector<int>{ -1, 0, 1 }));
-    REQUIRE_THAT(onkialgo::linspace<int>(-1, 1, 2, false), Catch::Matchers::Equals(std::vector<int>{ -1, 0 }));
+    REQUIRE_THAT(onkialgo::linspace(-1, 1, 3), Catch::Matchers::Equals(std::vector<int>{ -1, 0, 1 }));
+    REQUIRE_THAT(onkialgo::linspace(-1, 1, 2, false), Catch::Matchers::Equals(std::vector<int>{ -1, 0 }));
 }
 
 TEST_CASE("linspace with chrono", "[linspace]")
@@ -31,5 +31,5 @@ TEST_CASE("linspace with chrono duration", "[linspace]")
 
 TEST_CASE("linspace too big step", "[linspace]")
 {
-    REQUIRE_THAT(onkialgo::linspace<int>(1, 2, 3), Catch::Matchers::Equals(std::vector<int>{1}));
+    REQUIRE_THAT(onkialgo::linspace(1, 2, 3), Catch::Matchers::Equals(std::vector<int>{ 1 }));
 }
