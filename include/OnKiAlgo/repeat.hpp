@@ -48,7 +48,7 @@ auto repeat(Container &&c, typename std::iterator_traits<decltype(std::begin(std
     using OutputType = onkigenerics::AlternativeType<DefaultType, ResultType>;
     OutputType out{};
     if constexpr (!onkigenerics::is_raw_or_std_array_v<OutputType>) {
-        std::size_t output_size = static_cast<std::size_t>(std::size(c) * n);
+        std::size_t output_size = std::size(c) * static_cast<std::size_t>(n);
         out = onkigenerics::ContainerFactory<OutputType>::create(output_size);
     }
     implementation::repeat(std::begin(c), std::end(c), std::begin(out), n);
