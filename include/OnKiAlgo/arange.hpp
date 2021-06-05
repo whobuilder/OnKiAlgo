@@ -1,6 +1,7 @@
 #ifndef ONKIALGO_ARANGE_H
 #define ONKIALGO_ARANGE_H
 #include <vector>
+#include <algorithm>
 #include <OnKiGenerics/alternative_type.hpp>
 #include <OnKiGenerics/container_factory.hpp>
 namespace onkialgo {
