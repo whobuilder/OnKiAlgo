@@ -11,7 +11,10 @@ template<typename ResultType = void, typename T>
 auto arange(T start, T stop, T step)
 {
     using OutputType = onkigenerics::AlternativeType<std::vector<T>, ResultType>;
-    auto size = static_cast<std::size_t>((stop - start) / step) + 1;
+    const auto size = static_cast<std::size_t>((stop - start) / step) + 1;
+    if (size < 1) {
+        throw std::runtime_error{ "invalid start/stop values" };
+    }
     auto v = onkigenerics::ContainerFactory<OutputType>::create(size);
 
     T n{ 0 };
