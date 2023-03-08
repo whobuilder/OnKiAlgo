@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <limits>
 #include <cmath>
+#include <stdexcept>
 #include <OnKiGenerics/alternative_type.hpp>
 #include <OnKiGenerics/container_factory.hpp>
 namespace onkialgo {
