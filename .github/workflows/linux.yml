@@ -23,8 +23,8 @@ jobs:
       with:
         repository: catchorg/Catch2
         path: Catch2
-    - name: checkout Catch2 tag v2.13.3
-      run: git fetch --prune --unshallow && git checkout tags/v2.13.3
+    - name: checkout Catch2 tag v2.13.9
+      run: git fetch --prune --unshallow && git checkout tags/v2.13.9
       working-directory: ${{ github.workspace }}/Catch2
 
     - name: install catch2
